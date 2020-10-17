@@ -1,5 +1,8 @@
+import 'reflect-metadata';
 import express from 'express';
 import routes from './routes/index.routes';
+
+import './database';
 
 const app = express();
 
