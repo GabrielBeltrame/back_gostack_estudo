@@ -11,12 +11,12 @@ import { AppointmentsRepository } from '../repositories/AppointmentsRepository';
  */
 
 interface RequestDTO {
-  provider: string,
+  provider_id: string,
   date: Date
 }
 
 export class CreateAppointmentService {
-  public async execute({ provider, date }: RequestDTO): Promise<Appointment> {
+  public async execute({ provider_id, date }: RequestDTO): Promise<Appointment> {
 
     const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
@@ -26,7 +26,7 @@ export class CreateAppointmentService {
 
     if (findAppointmentInSameDate) throw Error("This appointment is alread booked");
 
-    const appointment = appointmentsRepository.create({ provider, date: appointmentDate });
+    const appointment = appointmentsRepository.create({ provider_id, date: appointmentDate });
 
     await appointmentsRepository.save(appointment);
 
