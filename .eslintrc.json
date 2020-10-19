@@ -28,6 +28,10 @@
     "warn",
     {
       "argsIgnorePattern": "^_"
+    },
+    "error",
+    {
+      "argsIgnorePattern": "_"
     }
   ],
     // "@typescript-eslint/naming-convention": [

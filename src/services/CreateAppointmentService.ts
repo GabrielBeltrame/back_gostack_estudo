@@ -4,11 +4,7 @@ import {getCustomRepository} from 'typeorm'
 import { Appointment } from '../models/Appointment';
 import { AppointmentsRepository } from '../repositories/AppointmentsRepository';
 
-/**
- * [X] Recebimento das informaçoes
- * [X] Tratativa de erros/excessões
- * [X] Acesso ao repositorio
- */
+import AppError from '../errors/AppError'
 
 interface RequestDTO {
   provider_id: string,
@@ -24,7 +20,7 @@ export class CreateAppointmentService {
 
     const findAppointmentInSameDate = await appointmentsRepository.findByDate(appointmentDate);
 
-    if (findAppointmentInSameDate) throw Error("This appointment is alread booked");
+    if (findAppointmentInSameDate) throw new AppError("This appointment is alread booked");
 
     const appointment = appointmentsRepository.create({ provider_id, date: appointmentDate });
 
